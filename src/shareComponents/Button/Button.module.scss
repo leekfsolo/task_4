@@ -9,10 +9,10 @@
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
-}
 
-.button.secondary-- {
-  background-color: #43a047;
+  &.secondary-- {
+    background-color: #43a047;
+  }
 }
 
 @media (min-width: 480px) {

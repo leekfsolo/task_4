@@ -13,10 +13,10 @@
   width: 100%;
   padding-top: 15px;
   padding-left: 15px;
-}
 
-.grid__block.full-- {
-  width: 100%;
+  &.full-- {
+    width: 100%;
+  }
 }
 
 @media (min-width: 480px) {
@@ -52,19 +52,15 @@
   display: none;
   color: #c00;
   font-size: 14px;
-}
 
-.field-error.active-- {
-  display: block;
+  &.active-- {
+    display: block;
+  }
 }
 
 @media (min-width: 480px) {
   .field-label {
     margin-bottom: 10px;
-  }
-
-  .field {
-    padding: 15px 20px;
   }
 
   .field-error {

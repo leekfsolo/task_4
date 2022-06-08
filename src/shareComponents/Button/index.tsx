@@ -3,26 +3,37 @@ import React, { FC, ReactNode } from "react";
 import styles from "./Button.module.scss";
 
 interface Props {
-  children: ReactNode;
-  type: "button" | "submit";
-  variant?: string;
-  id?: string;
+  children?: ReactNode;
+  isEditing: boolean;
+  setIsEditing: (isEditing: boolean) => void;
 }
 
 const Button: FC<Props> = (props: Props) => {
-  const { children, type = "button", variant = "", id = "" } = props;
-  const isTypeButton = type === "button";
-  const className = `${styles.button} ${styles[variant]}`;
+  const { isEditing, setIsEditing } = props;
+
+  const className = `${styles.button} ${
+    !isEditing ? styles["secondary--"] : ""
+  }`;
 
   return (
     <>
-      {isTypeButton ? (
-        <button type="button" className={className} id={id}>
-          {children}
+      {isEditing ? (
+        <button
+          type="submit"
+          className={className}
+          id="submit"
+          onClick={() => setIsEditing(false)}
+        >
+          SAVE
         </button>
       ) : (
-        <button type="submit" className={className} id={id}>
-          {children}
+        <button
+          type="button"
+          className={className}
+          id="edit"
+          onClick={() => setIsEditing(true)}
+        >
+          EDIT
         </button>
       )}
     </>

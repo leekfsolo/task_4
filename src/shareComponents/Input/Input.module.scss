@@ -1,0 +1,13 @@
+.field {
+  width: 100%;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 5px;
+  display: block;
+}
+
+@media (min-width: 480px) {
+  .field {
+    padding: 15px 20px;
+  }
+}
