@@ -1,0 +1,22 @@
+.button {
+  width: 250px;
+  border-radius: 14px;
+  padding: 10px 15px;
+  display: inline-block;
+  background-color: #546e7a;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.button.secondary-- {
+  background-color: #43a047;
+}
+
+@media (min-width: 480px) {
+  .button {
+    padding: 15px 20px;
+  }
+}
