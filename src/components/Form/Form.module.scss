@@ -47,23 +47,8 @@
   font-weight: bold;
 }
 
-.field-error {
-  margin-top: 5px;
-  display: none;
-  color: #c00;
-  font-size: 14px;
-
-  &.active-- {
-    display: block;
-  }
-}
-
 @media (min-width: 480px) {
   .field-label {
     margin-bottom: 10px;
-  }
-
-  .field-error {
-    margin-top: 10px;
   }
 }

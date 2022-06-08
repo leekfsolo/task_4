@@ -6,8 +6,18 @@
   display: block;
 }
 
+.field-error {
+  margin-top: 5px;
+  color: #c00;
+  font-size: 14px;
+}
+
 @media (min-width: 480px) {
   .field {
     padding: 15px 20px;
+  }
+
+  .field-error {
+    margin-top: 10px;
   }
 }

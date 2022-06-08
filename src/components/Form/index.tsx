@@ -1,32 +1,37 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useReducer, useState } from "react";
 import Button from "../../shareComponents/Button";
 import Input from "../../shareComponents/Input";
 
 import styles from "./Form.module.scss";
+import { inputActionType } from "./model/enum";
+import { initInput } from "./model/model";
+import { inputReducer } from "./model/reducer";
 
 const Form = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useReducer(inputReducer, initInput);
 
   const submitFormHandler = (e: FormEvent) => {
     e.preventDefault();
   };
 
   return (
-    <form id={styles.detailsForm} noValidate onSubmit={submitFormHandler}>
+    <form noValidate onSubmit={submitFormHandler}>
       <div className={styles.grid}>
         <div className={styles.grid__block}>
           <label>
             <div className={styles["field-label"]}>Name*</div>
 
             {isEditing ? (
-              <Input type="text" name="name" defaultValue="John Wick" />
+              <Input
+                type="text"
+                name={inputActionType.NAME}
+                value={inputValue.name}
+                setInputValue={setInputValue}
+              />
             ) : (
-              <div className={styles["field-value"]}>John Wick</div>
+              <div className={styles["field-value"]}>{inputValue.name}</div>
             )}
-
-            <div className={styles["field-error"]} id="nameRequired">
-              Name is required.
-            </div>
           </label>
         </div>
 
@@ -37,20 +42,13 @@ const Form = () => {
             {isEditing ? (
               <Input
                 type="email"
-                name="email"
-                defaultValue="donottake@mydog.com"
+                name={inputActionType.EMAIL}
+                value={inputValue.email}
+                setInputValue={setInputValue}
               />
             ) : (
-              <div className={styles["field-value"]}>donottake@mydog.com</div>
+              <div className={styles["field-value"]}>{inputValue.email}</div>
             )}
-
-            <div className={styles["field-error"]} id="emailRequired">
-              E-mail Address is required.
-            </div>
-
-            <div className={styles["field-error"]} id="emailInvalid">
-              E-mail Address is invalid.
-            </div>
           </label>
         </div>
 
@@ -59,18 +57,15 @@ const Form = () => {
             <div className={styles["field-label"]}>Contact Number*</div>
 
             {isEditing ? (
-              <Input type="tel" name="contact" defaultValue="0123456789" />
+              <Input
+                type="tel"
+                name={inputActionType.PHONE}
+                value={inputValue.phone}
+                setInputValue={setInputValue}
+              />
             ) : (
-              <div className={styles["field-value"]}>0123456789</div>
+              <div className={styles["field-value"]}>{inputValue.phone}</div>
             )}
-
-            <div className={styles["field-error"]} id="contactRequired">
-              Contact Number is required.
-            </div>
-
-            <div className={styles["field-error"]} id="contactInvalid">
-              Contact Number should consist of 8 to 12 digits only.
-            </div>
           </label>
         </div>
 
@@ -79,14 +74,15 @@ const Form = () => {
             <div className={styles["field-label"]}>Gender*</div>
 
             {isEditing ? (
-              <Input select name="gender" defaultValue="1" />
+              <Input
+                select
+                name={inputActionType.GENDER}
+                value={inputValue.gender}
+                setInputValue={setInputValue}
+              />
             ) : (
-              <div className={styles["field-value"]}>Male</div>
+              <div className={styles["field-value"]}>{inputValue.gender}</div>
             )}
-
-            <div className={styles["field-error"]} id="genderRequired">
-              Gender is required.
-            </div>
           </label>
         </div>
 
@@ -96,25 +92,14 @@ const Form = () => {
 
             {isEditing ? (
               <Input
-                name="notes"
+                name={inputActionType.NOTES}
                 multiline
-                defaultValue="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                value={inputValue.notes}
+                setInputValue={setInputValue}
               />
             ) : (
-              <div className={styles["field-value"]}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
+              <div className={styles["field-value"]}>{inputValue.notes}</div>
             )}
-
-            <div className={styles["field-error"]} id="notesRequired">
-              Notes is required.
-            </div>
           </label>
         </div>
 

@@ -19,7 +19,7 @@ const Button: FC<Props> = (props: Props) => {
     <>
       {isEditing ? (
         <button
-          type="submit"
+          type="button"
           className={className}
           id="submit"
           onClick={() => setIsEditing(false)}
@@ -28,7 +28,7 @@ const Button: FC<Props> = (props: Props) => {
         </button>
       ) : (
         <button
-          type="button"
+          type="submit"
           className={className}
           id="edit"
           onClick={() => setIsEditing(true)}
