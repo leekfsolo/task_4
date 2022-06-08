@@ -17,6 +17,7 @@ interface Props {
   text: string;
   multiline?: boolean;
   select?: boolean;
+  options?: Array<string>;
   setInputValue: Dispatch<inputAction>;
 }
 
@@ -28,6 +29,7 @@ const Input: FC<Props> = (props: Props) => {
     text = "",
     multiline = false,
     select = false,
+    options = ["Male", "Female", "Others", "I do not wish to say"],
     setInputValue,
   } = props;
 
@@ -55,10 +57,11 @@ const Input: FC<Props> = (props: Props) => {
           onChange={editInputValue}
         >
           <option value="">- Select -</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Others">Others</option>
-          <option value="I do not wish to say">I do not wish to say</option>
+          {options.map((option, idx) => (
+            <option value={option} key={idx}>
+              {option}
+            </option>
+          ))}
         </select>
       ) : (
         <input
