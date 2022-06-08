@@ -14,7 +14,7 @@ interface Props {
   type?: HTMLInputTypeAttribute;
   value?: string;
   name: inputActionType;
-  text?: string;
+  text: string;
   multiline?: boolean;
   select?: boolean;
   setInputValue: Dispatch<inputAction>;
@@ -25,7 +25,7 @@ const Input: FC<Props> = (props: Props) => {
     type = "text",
     value = "",
     name = inputActionType.NAME,
-    text,
+    text = "",
     multiline = false,
     select = false,
     setInputValue,
@@ -40,7 +40,7 @@ const Input: FC<Props> = (props: Props) => {
       {multiline ? (
         <textarea
           name={name}
-          className={styles.field}
+          className={`${styles.field} ${text ? styles["invalid--"] : ""}`}
           id={name}
           defaultValue={value}
           rows={3}
@@ -48,7 +48,7 @@ const Input: FC<Props> = (props: Props) => {
         />
       ) : select ? (
         <select
-          className={styles.field}
+          className={`${styles.field} ${text ? styles["invalid--"] : ""}`}
           name={name}
           id={name}
           defaultValue={value}
@@ -63,7 +63,7 @@ const Input: FC<Props> = (props: Props) => {
       ) : (
         <input
           name={name}
-          className={styles.field}
+          className={`${styles.field} ${text ? styles["invalid--"] : ""}`}
           id={name}
           defaultValue={value}
           type={type}

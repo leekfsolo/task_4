@@ -61,6 +61,7 @@ const Form = () => {
                 name={inputActionType.NAME}
                 value={inputValue.name}
                 setInputValue={setInputValue}
+                text={isNameValid ? "" : nameMsg}
               />
             ) : (
               <div className={styles["field-value"]}>{inputValue.name}</div>
@@ -78,6 +79,7 @@ const Form = () => {
                 name={inputActionType.EMAIL}
                 value={inputValue.email}
                 setInputValue={setInputValue}
+                text={isEmailValid ? "" : emailMsg}
               />
             ) : (
               <div className={styles["field-value"]}>{inputValue.email}</div>
@@ -95,6 +97,7 @@ const Form = () => {
                 name={inputActionType.PHONE}
                 value={inputValue.phone}
                 setInputValue={setInputValue}
+                text={isPhoneValid ? "" : phoneMsg}
               />
             ) : (
               <div className={styles["field-value"]}>{inputValue.phone}</div>
@@ -112,6 +115,7 @@ const Form = () => {
                 name={inputActionType.GENDER}
                 value={inputValue.gender}
                 setInputValue={setInputValue}
+                text={isGenderValid ? "" : genderMsg}
               />
             ) : (
               <div className={styles["field-value"]}>{inputValue.gender}</div>
@@ -129,6 +133,7 @@ const Form = () => {
                 multiline
                 value={inputValue.notes}
                 setInputValue={setInputValue}
+                text={isNotesValid ? "" : notesMsg}
               />
             ) : (
               <div className={styles["field-value"]}>{inputValue.notes}</div>
