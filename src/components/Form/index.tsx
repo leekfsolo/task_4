@@ -1,4 +1,5 @@
 import React, { FormEvent, useReducer, useState } from "react";
+import { useInput } from "../../hooks/useInput";
 import Button from "../../shareComponents/Button";
 import Input from "../../shareComponents/Input";
 
@@ -11,12 +12,44 @@ const Form = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [inputValue, setInputValue] = useReducer(inputReducer, initInput);
 
+  const { isValid: isNameValid, msg: nameMsg } = useInput({
+    value: inputValue.name,
+    type: inputActionType.NAME,
+  });
+  const { isValid: isEmailValid, msg: emailMsg } = useInput({
+    value: inputValue.email,
+    type: inputActionType.EMAIL,
+  });
+  const { isValid: isPhoneValid, msg: phoneMsg } = useInput({
+    value: inputValue.phone,
+    type: inputActionType.PHONE,
+  });
+  const { isValid: isGenderValid, msg: genderMsg } = useInput({
+    value: inputValue.gender,
+    type: inputActionType.GENDER,
+  });
+  const { isValid: isNotesValid, msg: notesMsg } = useInput({
+    value: inputValue.notes,
+    type: inputActionType.NOTES,
+  });
+
+  const isFormValid =
+    isEmailValid &&
+    isNameValid &&
+    isPhoneValid &&
+    isGenderValid &&
+    isNotesValid;
+
   const submitFormHandler = (e: FormEvent) => {
     e.preventDefault();
+
+    if (!isFormValid) return;
+
+    setIsEditing(false);
   };
 
   return (
-    <form noValidate onSubmit={submitFormHandler}>
+    <form noValidate onSubmit={submitFormHandler} id="detailsForm">
       <div className={styles.grid}>
         <div className={styles.grid__block}>
           <label>

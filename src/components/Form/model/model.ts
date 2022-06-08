@@ -13,7 +13,7 @@ export type InputElement =
 
 export const initInput = {
   name: "John Wick",
-  email: "donottake@gmail.com",
+  email: "donottake@mydog.com",
   phone: "0123456789",
   gender: "Male",
   notes:
